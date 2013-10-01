@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <script>
+            var v;
+            function init() {
+                v = document.getElementsByTagName("video")[0];
+
+            }
+            
+            function play() {
+                v.currentTime = 2; // Seek to 122 seconds
+                console.log('hey');
+                v.play();
+            }
+            
+            function pause() {
+                v.pause();   
+            }
+            
+            window.onload = init;
+        </script>
+    </head>
+    <body>
+        <video src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" controls loop>
+          Your browser does not support the <code>video</code> element.
+        </video>
+        <div>
+            <button onclick="play()">Play</button>
+            <button onclick="pause()">Pause</button>
+        </div>
+    </body>
+</html>
