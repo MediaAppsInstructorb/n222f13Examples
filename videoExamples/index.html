@@ -1,33 +1,36 @@
-<html>
+<!DOCTYPE html>
     <head>
-        <script>
-            
-            var vid;
-            
-            function init() {
-                vid = document.getElementsByTagName("video")[0];
-            }
-            
-            function play() {
-                //seek to 2 seconds
-                vid.currentTime = 2;
-                vid.play();
-            }
-            
-            function pause() {
-                vid.pause();   
-            }
-            window.onload = init;
-        </script>
+        <meta charset="utf-8">
+        <title>Video Examples</title>
+        <!-- Tons of other meta stuff can go here -->
+        <meta name="description" content="Description of the page">
+        <meta name="keywords" content="Keywords about the page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- This is for the favicons and web app icons on devices-->
+        <link rel="shortcut icon" href="" />
+        <link rel="apple-touch-icon" href="" />
+
+        <!-- This is for your visual styles, of course -->
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <video autoplay loop controls>
-            <source src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" />
-            Your browser does not support the video tag, loser.
-        </video>
-        <div>
-            <button onclick="pause()">Pause</button>
-            <button onclick="play()">Play</button>
-        </div>
+        <p class="notice" id="no-js-notice">Javascript is currently disabled. For the best experience here, please <a href="http://enable-javascript.com/"> enable Javascript in your browser</a>!
+    </p>
+        <section>
+            <video loop controls width="340px" height="240px">
+                <source src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" />
+                Your browser does not support the video tag, loser.
+            </video>
+            <div>
+                <button id="pause-control" class="control">Pause</button>
+                <button id="play-control" class="control">Play</button>
+            </div>
+        </section>
+    <!-- Scripts at the bottom of the body!! -->
+    <script src="js/video.js"></script>
+    <script>
+        document.getElementById('no-js-notice').className += " hide";
+    </script>
     </body>
 </html>

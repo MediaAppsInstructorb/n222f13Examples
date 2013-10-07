@@ -1,0 +1,37 @@
+/* General Styles Here */
+
+body {
+	background-color: #fafafa;
+	font-size:16px;
+	font-family: sans-serif;
+}
+
+.notice {
+	background-color: #ffff79;
+	color: #909028;
+	border: 1px solid #eaea5a;
+	display:inline-block;
+	font-size: 1.25em;
+	text-align: center;
+	width:100%;
+	margin: 10px auto;
+	line-height: 2em;
+}
+
+.hide { display:none; }
+
+/* Style video control buttons */
+.control {
+	font-size: 1.3em;
+	background-color: #eee;
+	border-radius: 3px;
+	border: 1px solid #d5d5d5;
+	min-width: 163px;
+	color: rgba(51, 51, 51, 0.57);
+}
+
+.control:hover {
+	color: #333;
+	border-color: #868585;
+	background-color: #b6b1b1;
+}
