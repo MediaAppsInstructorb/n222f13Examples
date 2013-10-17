@@ -1,0 +1,66 @@
+this.<html>
+    <head>
+        <script src="js/sprite.js"></script>
+        <script>
+            
+            var ctx, mySprite, secondSprite;
+            var keys = {};
+            
+            function init() {
+                
+                var canvas = document.getElementById("myCanv");
+                ctx = canvas.getContext('2d');
+                 
+                mySprite = new Sprite("assets/sheet.png", 32, 65);
+                mySprite.name ="Hey";
+                mySprite.addAnimation("walk", [4,5,0,3,5,1]);
+                mySprite.play("walk");
+               mySprite.x = 200
+                
+                secondSprite = new Sprite("assets/sheet.png", 32, 65);
+                secondSprite.x = 30;
+                secondSprite.addAnimation("static", [1]);
+                secondSprite.play("static");
+                
+               requestAnimationFrame(update);
+            }
+            
+            function update() {
+                ctx.clearRect(0,0,400,300);
+                mySprite.update();
+                secondSprite.update();
+                
+                if(mySprite.hitTest(secondSprite) ) {
+                    console.log("yeah");
+                }
+                
+                if(keys[37]) {
+                    mySprite.scale.x = -1;
+                    mySprite.x --;
+                }
+                
+                if(keys[39]) {
+                    mySprite.scale.x = 1;
+                    mySprite.x ++;
+                }
+                
+                requestAnimationFrame(update);
+            }
+            
+            document.addEventListener('keydown', function(event) {
+                keys[event.keyCode] = true;
+            });
+            
+            document.addEventListener('keyup', function(event) {
+                keys[event.keyCode] = false;
+            });
+            
+            
+
+            window.onload = init;
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanv" width="400" height="300"></canvas>
+    </body>
+</html>

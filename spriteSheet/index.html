@@ -1,4 +1,4 @@
-<html>
+this.<html>
     <head>
         <script>
             
@@ -18,16 +18,16 @@
             }
             
             function update() {
-                //ctx.clearRect(0,0,400,300);
+                ctx.clearRect(0,0,400,300);
                 mySprite.update();
                 
                 if(keys[37]) {
-                    mySprite.scale.x = -1;
+                    mySprite.scale.x = -.5;
                     mySprite.x --;
                 }
                 
                 if(keys[39]) {
-                    mySprite.scale.x = 1;
+                    mySprite.scale.x = .5;
                     mySprite.x ++;
                 }
                 
