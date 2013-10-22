@@ -77,10 +77,6 @@ Does a hit test against another sprite.
 Returns true if they are overlapping
 */
 Sprite.prototype.hitTest = function(other) {
-    //
-    
-    
-    
     //bottom right versus top left
     //top left versus bottom right
      if (this.x+this.width < other.x || 
@@ -92,16 +88,5 @@ Sprite.prototype.hitTest = function(other) {
      }
     
     return true;
-    
-    /*
-    if(Math.abs(this.x - other.x) < this.width + other.width)
-      {
-         if(Math.abs(this.y - other.y) < this.height + other.height)
-         {
-            return true;
-         }
-      }
-      
-      return false;
-      */
+
 }
