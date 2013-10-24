@@ -8,7 +8,8 @@ var game = new Phaser.Game(
                     }
             );
 
-var sprite;
+//game variables
+var sprite, group;
 
 //load in game assets
 function preload() {
@@ -18,14 +19,21 @@ function preload() {
     game.load.atlasJSONHash('inch',
                             'assets/sprites.png',
                             'assets/sprites.js');
+    game.load.image("hairball", "assets/hairball.png")
 }
 
 //setup game entities
 function create() {
+    //protagonist
     sprite = game.add.sprite(0, 0, 'inch');
     sprite.animations.add('idle');
     sprite.animations.play('idle', 60, true);
     sprite.anchor.setTo(.5, 0); //center flip area
+    
+    //stuff
+    group = game.add.group();
+    group.create(250,0, "hairball");
+    group.create(350,0, "hairball");
 }
 
 //game logic, ~30 fps
@@ -42,4 +50,17 @@ function update() {
         sprite.scale.x = 1; //face right
     }
     
+    //check for collision with hairball
+    game.physics.collide(
+         sprite, 
+         group, 
+         collisionHandler, 
+         null, 
+         this
+    );
+    
+} //end update function
+
+function collisionHandler(protagonist, hairball) {
+    hairball.kill();   
 }
