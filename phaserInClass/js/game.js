@@ -29,11 +29,15 @@ function create() {
     sprite.animations.add('idle');
     sprite.animations.play('idle', 60, true);
     sprite.anchor.setTo(.5, 0); //center flip area
+    sprite.body.collideWorldBounds = true;
     
-    //stuff
     group = game.add.group();
-    group.create(250,0, "hairball");
-    group.create(350,0, "hairball");
+    //stuff
+    for(var i = 0; i < 3; i++) {
+        var ball = group.create(i*100,0, "hairball");
+        ball.acceleration.y = 100;
+        ball.body.collideWorldBounds = true;
+    }
 }
 
 //game logic, ~30 fps

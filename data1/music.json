@@ -1,0 +1,25 @@
+{
+
+    "albums": 
+        [
+            {
+                "title": "The Else", 
+                "artist": "They Might Be Giants",
+                "date": "2007",
+                "tracks": [
+                    "I'm Impressed",
+                    "The Mesopotamians"
+                ]
+            },
+            {
+                "title": "Nanobots",
+                "artist": "They Might Be Giants",
+                "date": "2013",
+                "tracks": [
+                    "You're on Fire",
+                    "Nanobots"
+                ]
+
+            }
+        ]
+}

@@ -131,7 +131,7 @@ Example JSON Music library
 ```{.javascript}
 {
 	
-	"albums": {
+	"albums": 
 		[
 			{
 				"title": "The Else", 
@@ -152,7 +152,7 @@ Example JSON Music library
 				]
 
 			}
-	}
+            ]
 }
 ```
 

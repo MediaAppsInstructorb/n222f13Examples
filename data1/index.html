@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        
+    </head>
+    <body>
+        
+        <div id="dataOutput">
+
+        </div>
+        
+        <script>
+            //wait for page ready
+            $(document).ready(function() {
+                
+                //get the output div
+                var outDiv = $("#dataOutput");
+            
+                console.log("as");
+                
+                $.getJSON( "music.json", function( data ) {
+                    //data is a javascript object with the loaded data
+                    //loop through data
+                    
+                    for(var i = 0; i < data.albums.length; i++) {
+                        outDiv.append("<li class='album' data-index='"+i+"'>" 
+                                      + data.albums[i].title 
+                                      + "</li>"
+                                    );
+                    }
+                    //listen for clicks on the new albums
+                    $(".album").click(function() {
+                        console.log(this);
+                        var clickedItem = $(this); 
+                        var albumIndex = clickedItem.data("index");
+                        console.log(albumIndex);
+                        var albumData = data[albumIndex];
+                        console.log(albumData);
+                    });
+                    
+                    
+                });
+                
+            });
+        </script>
+    </body>
+</html>
