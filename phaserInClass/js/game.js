@@ -9,7 +9,7 @@ var game = new Phaser.Game(
             );
 
 //game variables
-var sprite, group;
+var sprite, group, txtScore;
 
 //load in game assets
 function preload() {
@@ -31,6 +31,10 @@ function create() {
     sprite.anchor.setTo(.5, 0); //center flip area
     sprite.body.collideWorldBounds = true;
     
+    //add text
+     var style = { font: "30px Arial", fill: "#FFFF00", fontWeight: "bold", align: "center" };
+    txtScore = game.add.text(0, 0, "0", style);
+    
     group = game.add.group();
     //stuff
     for(var i = 0; i < 3; i++) {
@@ -42,6 +46,11 @@ function create() {
 
 //game logic, ~30 fps
 function update() {
+    
+    //add one to score
+    var score = txtScore.text;
+    score ++;
+    txtScore.text = score.toString();
     
     if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
     {

@@ -8,6 +8,9 @@
         <div id="dataOutput">
 
         </div>
+        <div id="albumInfo">
+            
+        </div>
         
         <script>
             //wait for page ready
@@ -18,11 +21,18 @@
             
                 console.log("as");
                 
+                var albums;
                 $.getJSON( "music.json", function( data ) {
+                    
+                    //store albums for later use
+                    albums = data.albums;
+                    
                     //data is a javascript object with the loaded data
                     //loop through data
                     
                     for(var i = 0; i < data.albums.length; i++) {
+                        //add list elements showing the albums in the loaded data
+                        //include the index of the album of the array as a HTML5 data attribute
                         outDiv.append("<li class='album' data-index='"+i+"'>" 
                                       + data.albums[i].title 
                                       + "</li>"
@@ -31,11 +41,18 @@
                     //listen for clicks on the new albums
                     $(".album").click(function() {
                         console.log(this);
-                        var clickedItem = $(this); 
-                        var albumIndex = clickedItem.data("index");
+                        var clickedItem = $(this); //thing that was clicked
+                        //index of the data associated with the thing clicked
+                        var albumIndex = clickedItem.data("index"); 
                         console.log(albumIndex);
-                        var albumData = data[albumIndex];
+                        //the data related to the title clicked
+                        var albumData = albums[albumIndex];
                         console.log(albumData);
+                        
+                        //show extra info about the album clicked
+                        $("#albumInfo").html(
+                            albumData.artist + ": " + albumData.date
+                        );
                     });
                     
                     
