@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Flickr API test</title>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    </head>
+    <body>
+        <div id="curImages">        
+        </div>
+        <script>
+            $(document).ready(function() {
+                 var curImagesDiv = $("#curImages");
+               
+            var url = "http://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=?";
+                
+            $.ajax({
+              url: url,
+              dataType: 'jsonp',
+              success: function(data) { 
+                  console.log(data); 
+                    //every entry in the items array
+                  for(var i = 0; i < data.items.length; i++) {
+                     // curImagesDiv.append(data.items[i].title);
+                      curImagesDiv.append("<img src='" +
+                                          data.items[i].media.m +
+                                          "' />"
+                                         );
+                  }
+              },
+              jsonp: 'callback'
+            });
+                
+            });
+        </script>
+    </body>
+</html>
