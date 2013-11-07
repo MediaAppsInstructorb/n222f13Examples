@@ -47,6 +47,20 @@ function create() {
 //game logic, ~30 fps
 function update() {
     
+    //add new thingy 
+    if(Math.random() < .05) {
+         var ball = group.create(Math.random() * 500,0, "hairball");
+        ball.acceleration.y = 100;
+        ball.body.collideWorldBounds = true;
+    }
+    
+    group.forEach(function(hb) {
+        if(hb.y > 500) {
+            hb.kill();
+            //game over
+        }
+    })
+    
     //add one to score
     var score = txtScore.text;
     score ++;
