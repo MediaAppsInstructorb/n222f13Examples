@@ -49,7 +49,18 @@ function update() {
     
     //add new thingy 
     if(Math.random() < .05) {
-         var ball = group.create(Math.random() * 500,0, "hairball");
+        
+        var rndTest = Math.random();
+        
+        if(rndTest < .33) {
+            var ball = group.create(Math.random() * 500,0, "hairball");
+        } else if (rndTest < .66) {
+            var ball = group.create(Math.random() * 500,0, "banna");
+        } else {
+            var ball = group.create(Math.random() * 500,0, "quelquechoses");
+        }
+        
+         //var ball = group.create(Math.random() * 500,0, "hairball");
         ball.acceleration.y = 100;
         ball.body.collideWorldBounds = true;
     }
