@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Soundcloud test</title>
+        <style>
+            
+            body {
+                font-family: sans-serif;
+            }
+            
+            .col {
+                float: left;
+                width: 300px;
+                margin: 0 10px;
+            }
+            
+            #trackListing li {
+                list-style-type: none;
+                cursor: pointer;
+                background: #333;
+                width: 300px;
+                height: 20px;
+                padding: 10px;
+                border-radius:6px;
+                overflow: hidden;
+                margin: 5px;
+            }
+            
+            #trackListing li:hover {
+                color: #fff;
+            }
+            
+            progress {  
+                background-color: #f3f3f3;  
+                border: 0;  
+                height: 18px;  
+                border-radius: 9px;  
+            }  
+        </style>
+    </head>
+    <body>
+        <div>
+            <input id="search" />
+            <input type="button" value="search" id="btnSearch" />
+        </div>
+        <div>
+            <div id="nowPlaying"></div>
+            <progress id='position' max='1' value='0'></progress>
+        </div>
+        <div id="listingPage" class='col'>
+            <div id="trackListing">
+                
+            </div>
+        </div>
+        <div id="playlist" class='col'>
+        
+        </div>
+        <div id="homePage">
+        
+        </div>
+        <script src="jquery-1.10.2.min.js"></script>
+        <script src="http://connect.soundcloud.com/sdk.js"></script>
+        <script src="soundcloud.js"></script>
+    </body>
+</html>
