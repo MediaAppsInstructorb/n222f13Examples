@@ -2,12 +2,19 @@ var trackListing = $("#trackListing");
 var playlist = $("#playlist");
 var position = $("#position");
 var result;
+var currentlyPlayingSound;
+var currentlyPlayingIndex;
 
 SC.initialize({
     client_id: "3a0223a4404c4efe6133f785bc3cea54",
     redirect_url: "http://127.0.0.1"
 });
 
+$("#btnStop").click(function() {
+    if(currentlyPlayingSound) {
+        currentlyPlayingSound.stop();
+    }
+})
 
 //when the search button is clicked...
 $("#btnSearch").click(function() {
@@ -20,11 +27,36 @@ $("#btnSearch").click(function() {
 
 //this... plays a song
 function playSong(trackID) {
+    
+    //make sure this sound exists
+    if(currentlyPlayingSound) {
+        //if it does, stop it
+        currentlyPlayingSound.stop();
+    }
+    
     SC.stream("/tracks/"+trackID, function(sound){
-      sound.play({
+      
+        currentlyPlayingSound = sound;
+        
+        sound.play({
         whileplaying: function() {
             console.log(this.position / this.duration);
             position.val(this.position / this.duration);
+        },
+        onfinish: function() {
+            //try to play next song
+            currentlyPlayingIndex ++;
+            
+            //make sure there is a next song to play
+            if(currentlyPlayingIndex < playlist.children().length ) {
+                var nextElement = playlist.find('li').eq(currentlyPlayingIndex);
+                
+                //update the now playing HTML
+                $("#txtNow").html("Now playing: " + nextElement.html() );
+
+                //play the next song
+                playSong(nextElement.data("trackID"));
+            }
         }
       });
     });
@@ -34,6 +66,9 @@ function playSong(trackID) {
 $("#playlist").on("click", "li", function(event) {
     
     var clickedElement = $(event.target);
+    
+    //update what is currently playing
+    currentlyPlayingIndex = clickedElement.index();
     
     //get the associated track of the clicked element
     var trackID = clickedElement.data("trackID");
