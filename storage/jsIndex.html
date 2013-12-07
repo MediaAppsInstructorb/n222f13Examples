@@ -1,0 +1,57 @@
+<html>
+    <head>
+            <title>Test</title>
+    </head>
+    <body>
+        <input id="txtInput" />
+        <input id="btnAdd" value="add" type="button" />
+        <div id="divTodo">
+        
+        </div>
+        
+        <script>
+            
+            
+            var txtInput = document.getElementById("txtInput");
+            var divTodo = document.getElementById("divTodo");
+            var btnAdd = document.getElementById("btnAdd");
+            
+            var todoList = localStorage.getItem("todoList");
+            console.log(todoList);
+            if(!todoList) {
+                localStorage.setItem("todoList", []);
+            } else {
+                populateTodoList();
+            }
+            
+    
+        
+            btnAdd.addEventListener("click", function() {
+                divTodo.innerHTML += "<p>"+txtInput.value+ "</p>";
+                updateStorage();
+            });
+            
+            function updateStorage() {
+                var todos = [];
+                for(var i = 0; i < divTodo.children.length; i++) {
+                    
+                    console.log( divTodo.children[i] );
+                    todos.push( divTodo.children[i].innerHTML );
+                }
+                
+                localStorage.setItem("todoList", todos);
+                
+            }
+            
+            function populateTodoList() {
+                var todos =  localStorage.getItem("todoList").split(",");
+
+                for(var i = 0; i< todos.length; i++) {
+                    console.log(todos[i]);
+                    divTodo.innerHTML += "<p>" + todos[i] + "</p>";
+                }
+            }
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Soundcloud API Example</title>
+        <style>
+            
+            body {
+                color: #333;
+            }
+            
+            #trackListing {
+                width: 300px;
+                float: left;
+            }
+            
+            #trackListing li {
+                list-style-type: none;
+                background: #FC0;
+                margin: 5px 0;
+                padding: 2px;
+                cursor: pointer;
+            }
+            
+            #playlist {
+                width: 300px;
+                float: left;
+            }
+            
+            #playlist li {
+                list-style-type: none;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div>
+            <input id="txtSearch" />
+            <input type="button" value="search" id="btnSearch" />
+            <input type="button" value="stop" id="btnStop" />
+        </div>
+        
+        <div>
+            Now playing: <span id="txtNow"></span>
+        </div>
+        <div>
+            <progress id='position' max='1' value='0'>
+            </progress>
+        </div>
+        
+        <div id="trackListing">
+        
+        </div>
+        
+        <div id="playlist"></div>
+        
+        <script src="jquery-2.0.3.min.js"></script>
+        <script src="http://connect.soundcloud.com/sdk.js"></script>
+        <script src="jukebox.js"></script>
+        <script src="site.js"></script>
+    </body>
+</html>

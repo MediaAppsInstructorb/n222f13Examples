@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Quick example of localStorage</title>
+    </head>
+    <body>
+        <input id="txtInput" />
+        <input id="btnAdd" value="add" type="button" />
+        <div id="divTodo"></div>
+        
+        <script src="jquery-2.0.3.min.js"></script>
+        <script>
+            var txtInput = $("#txtInput");
+            var divTodo = $("#divTodo");
+            var btnAdd = $("#btnAdd");
+            
+            var todoList = localStorage.getItem('todoList');
+            
+            //if no todolist
+            if(!todoList) {
+                //blank one
+                todoList = [];
+            } else {
+                populateTodolist();
+            }
+            
+            //HOW SPLIT WORKS
+            // myString = "some,values,in,here";
+            // myString.split(',') == [ 'some', 'values', 'in', 'here' ];
+            //splits a string at the value into an array
+            //of substrings
+            function populateTodolist() {
+                var todos = todoList.split(",");
+                
+                for(var i = 0; i < todos.length; i++) {
+                    divTodo.append('<p>' + todos[i] + "</p>");   
+                }
+                
+                for(var i = 0; i < divTodo.children().length; i++) {
+                    divTodo.children().eq(i).hide().delay(i * 700).show('slow');
+                }
+            }
+            
+            //adds a new todo entery
+            btnAdd.click(function() {
+                divTodo.append("<p>" + txtInput.val() + "</p>");
+                //get last child of divtodo
+                var newentery = divTodo.children().last();
+                //animate new entry
+                newentery.hide().show('slow');
+                
+                updateStorage();
+            });
+            
+            divTodo.on("click", "p", function() { 
+                //hide the thing that was clicked
+                $(this).hide("slow", function() {
+                    //runs when the element becomes invisible
+                    this.remove();
+                    updateStorage();
+                });
+            });
+            
+            function updateStorage() {
+                //an array of our todos
+                var todos = [];  
+                //loop through every todo in divTodo
+                for(var i = 0; i < divTodo.children().length; i++) {
+                    //add that todo's text into the array
+                    todos.push( divTodo.children()[i].innerHTML );   
+                }
+                
+                //save to the user's local storage
+                localStorage.setItem('todoList', todos);
+                
+            }
+            
+            
+        </script>
+    </body>
+</html>

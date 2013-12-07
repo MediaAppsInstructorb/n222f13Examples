@@ -1,0 +1,62 @@
+<html>
+    <head>
+            <title>Test</title>
+    </head>
+    <body>
+        <input id="txtInput" />
+        <input id="btnAdd" value="add" type="button" />
+        <div id="divTodo"></div>
+        
+        <script src="jquery-2.0.3.min.js"></script>
+        <script>
+            
+            var txtInput = $("#txtInput");
+            var divTodo = $("#divTodo");
+            var btnAdd = $("#btnAdd");
+            
+            var todoList = localStorage.getItem("todoList");
+            
+            if(!todoList) {
+                localStorage.setItem("todoList", []);
+            } else {
+                populateTodoList();
+            }
+            
+            btnAdd.click(function() {
+                divTodo.append( "<p>"+txtInput.val() + "</p>" );
+                var newentry = divTodo.children().last();
+                newentry.hide().show('slow');
+                updateStorage();
+            });
+            
+            divTodo.on("click", "p", function(event) {
+                $(this).hide('slow', function() {
+                    this.remove();
+                    updateStorage();
+                });
+                
+            });
+            
+            function updateStorage() {
+                var todos = [];
+                for(var i = 0; i < divTodo.children().length; i++) {
+                    todos.push( divTodo.children()[i].innerHTML );
+                }
+                localStorage.setItem("todoList", todos);
+            }
+            
+            function populateTodoList() {
+                var todos =  localStorage.getItem("todoList").split(",");
+                
+                for(var i = 0; i< todos.length; i++) {
+                    divTodo.append( "<p>" + todos[i] + "</p>" );
+                }
+                
+                for(var i = 0; i < divTodo.children().length; i++) {
+                   divTodo.children().eq(i).hide().delay(i * .9).show('slow')
+                }
+            }
+            
+        </script>
+    </body>
+</html>
